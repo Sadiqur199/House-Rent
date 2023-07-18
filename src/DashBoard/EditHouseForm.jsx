@@ -6,7 +6,6 @@ const EditHouseForm = ({ houseId, fetchHouses }) => {
     name: '',
     address: '',
     city: '',
-    // Add other form fields here
   });
 
   useEffect(() => {
