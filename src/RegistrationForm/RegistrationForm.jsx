@@ -14,7 +14,7 @@ const RegistrationForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/register', {
+      const response = await axios.post('https://sserver-ruby.vercel.app/register', {
         fullName,
         role,
         phoneNumber,

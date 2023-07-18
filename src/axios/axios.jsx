@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.post('http://localhost:5000/register', userData)
+axios.post('https://sserver-ruby.vercel.app/register', userData)
   .then((response) => {
     // Handle successful response
     console.log(response.data);
