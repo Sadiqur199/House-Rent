@@ -16,7 +16,6 @@ const Home = () => {
 
   return (
     <div className="container mx-auto py-4">
-      <h1 className="text-2xl font-bold mb-4">Available Houses</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {houses.map((house) => (
           <HouseCard key={house.id} house={house} />

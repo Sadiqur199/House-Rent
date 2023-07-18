@@ -5,12 +5,13 @@ const SearchForm = () => {
   const [city, setCity] = useState('');
   const [bedrooms, setBedrooms] = useState('');
   const [bathrooms, setBathrooms] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
 
   const handleSearch = async (e) => {
     e.preventDefault();
     const params = { city, bedrooms, bathrooms };
     const data = await housesApi.searchHouses(params);
-    console.log(data); // You can update the state or perform any other action with the filtered houses data
+    setSearchResults(data);
   };
 
   return (
@@ -18,7 +19,7 @@ const SearchForm = () => {
       <form className="flex justify-center" onSubmit={handleSearch}>
         <input
           type="text"
-          placeholder="City"
+          placeholder="Location"
           value={city}
           onChange={(e) => setCity(e.target.value)}
           className="px-2 py-1 border border-gray-300 rounded-l focus:outline-none"
@@ -44,6 +45,17 @@ const SearchForm = () => {
           Search
         </button>
       </form>
+      <div className="mt-4">
+        {searchResults.map((house) => (
+          <div key={house.id} className="border p-4 mb-4">
+            <img src={house.img} className='h-[30%] w-[20%]' alt="" />
+            <h3 className="text-lg font-bold">{house.title}</h3>
+            <p>Location: {house.city}</p>
+            <p>Bedrooms: {house.bedrooms}</p>
+            <p>Bathrooms: {house.bathrooms}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

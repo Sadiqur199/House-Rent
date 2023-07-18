@@ -5,10 +5,12 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import './index.css'
-import Home from './Component/Home.jsx';
 import Main from './Layout/Main.jsx';
-import AllComponent from './AllComponet/AllComponent.jsx';
-import SearchForm from './Component/SearchForm/SearchForm';
+import RegistrationForm from './RegistrationForm/RegistrationForm';
+import LoginForm from './LoginForm/LoginForm';
+import AllComponent from './AllComponet/AllComponent';
+import { AuthProvider } from './Authcontext/AuthContext';
+import HouseOwnerDashboard from './DashBoard/HouseOwnerDashboard';
 
 const router = createBrowserRouter([
   {
@@ -17,15 +19,31 @@ const router = createBrowserRouter([
     children:[
       {
         path:'/',
-        element:<SearchForm></SearchForm>
-      }
+        element:<AllComponent></AllComponent>
+      },
+      {
+        path:'/register',
+        element:<RegistrationForm></RegistrationForm>
+      },
+      {
+        path:'/login',
+        element:<LoginForm></LoginForm>
+      },
+      {
+        path: "/dashboard",
+        element: <HouseOwnerDashboard></HouseOwnerDashboard>,
+      },
+
+
     ]
-  },
+  }
 ]);
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <AuthProvider>
+    <React.StrictMode>
     <RouterProvider router={router} />
   </React.StrictMode>
+  </AuthProvider>
 );
